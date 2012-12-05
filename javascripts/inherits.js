@@ -9,3 +9,5 @@ var inherits = function(ctor, superCtor) {
 		}
 	});
 };
+
+var EventEmitter = EventEmitter2;
