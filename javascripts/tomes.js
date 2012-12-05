@@ -1,6 +1,6 @@
 var EventEmitter;
 var inherits;
-if (require !== undefined) {
+if (typeof require === 'function') {
 	EventEmitter = require('events') ? require('events').EventEmitter : EventEmitter;
 	inherits = require('util') ? require('util').inherits : inherits;
 } else {
