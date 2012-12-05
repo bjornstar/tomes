@@ -17,21 +17,21 @@
   </head>
 
   <body>
-    <h1>Demo</h1>
     <div id='sDiv' class='inputDiv'>
-      <h1>Server</h1>
-      <span id='sRepresentation'></span>
-      <textarea id='sTextarea'></textarea>
-      <span id='s2c' class='talk'>send &gt;</span>
+      <span class='big'>server:</span>
+      <div id='sRepresentation' class='code'></div>
+      <textarea id='sTextarea' class='code'></textarea>
+      <span id='s2c' class='talk big'>send &gt;</span>
     </div>
     <div id='cDiv' class='inputDiv'>
-      <h1>Client</h1>
-      <span id='cRepresentation'></span>
-      <textarea id='cTextarea'></textarea>
-      <span id='c2s' class='talk'>&lt; send</span>
+      <span class='big'>client:</span>
+      <div id='cRepresentation' class='code'></div>
+      <textarea id='cTextarea' class='code'></textarea>
+      <span id='c2s' class='talk big'>&lt; send</span>
     </div>
     <div id='dDiv' class='diff'>
-      <span id='dRepresentation'></span>
+      <span class='big'>diffs:</span>
+      <div id='dRepresentation' class='code'></div>
     </div>
 
     <script type="text/javascript">

@@ -22,8 +22,8 @@ function newLine(source, text) {
 	var output = document.createElement('span');
 	output.textContent = '\u003C' + source + '\u003E ' + text;
 	dRepresentation.appendChild(output);
-	var dDiv = document.getElementById('dDiv');
-	dDiv.scrollTop = dDiv.scrollHeight;
+	dRepresentation.appendChild(document.createElement('br'));
+	dRepresentation.scrollTop = dRepresentation.scrollHeight;
 }
 
 function contentLoaded() {
@@ -88,11 +88,11 @@ function contentLoaded() {
 	var cRepresentation = document.getElementById('cRepresentation');
 
 	sData.on('signal', function (value) {
-		sRepresentation.innerText = 'var sData = ' + JSON.stringify(value);
+		sRepresentation.textContent = 'var sData = ' + JSON.stringify(value);
 	});
 
 	cData.on('signal', function (value) {
-		cRepresentation.innerText = 'var cData = ' + JSON.stringify(value);
+		cRepresentation.textContent = 'var cData = ' + JSON.stringify(value);
 	});
 }
 

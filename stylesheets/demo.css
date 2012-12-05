@@ -1,19 +1,26 @@
+html {
+	font-family: helvetica,sans-serif;
+	background-color: #aaa;
+	margin: 0;
+	padding: 0;
+}
 div.inputDiv {
-	width: 42%;
+	width: 46%;
 	float: left;
-	background-color: #565656;
-	border: solid 1px #212121;
+	background-color: #eee;
+	border: solid 1px #222;
 	margin: 10px;
 	padding: 10px;
 	border-radius: 10px;
-	box-shadow: 5px 5px 10px #212121;
+	box-shadow: 5px 5px 10px #777;
 }
 div.inputDiv h1 {
 	margin: 10px;
 }
-div.inputDiv span, .diff {
-	font-family: monospace;
-	font-size: 14px;
+#sRepresentation, #cRepresentation, #dRepresentation {
+	height: 100px;
+	max-height: 100px;
+	overflow-y: scroll;
 }
 div.inputDiv textarea {
 	margin-top: 12px;
@@ -23,26 +30,28 @@ div.diff {
 	float: left;
 	clear: left;
 	background-color: #eee;
-	border: solid 1px #000;
+	border: solid 1px #222;
 	margin: 10px;
 	padding: 10px;
 	border-radius: 10px;
-	box-shadow: 5px 5px 10px #212121;
-	max-height: 50%;
-	overflow-y: scroll;
+	box-shadow: 5px 5px 10px #777;
 }
 textarea {
-	width: 100%;
+	width: 96%;
 	height: 100px;
+	padding: 2px 6px;
 }
 #s2c {
 	float:right;
 }
-div.inputDiv span.talk {
-	font-size: 36px;
-	cursor: pointer;
+.code {
+	font-family: monospace;
+	font-size: 14px;
 }
-#dRepresentation span {
-	float:left;
-	clear:left;
+.big {
+	font-family: helvetica, sans-serif;
+	font-size: 36px;
+}
+div.inputDiv span.talk {
+	cursor: pointer;
 }
