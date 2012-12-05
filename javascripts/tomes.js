@@ -1,5 +1,6 @@
 var EventEmitter;
 var inherits;
+
 if (typeof require === 'function') {
 	EventEmitter = require('events') ? require('events').EventEmitter : EventEmitter;
 	inherits = require('util') ? require('util').inherits : inherits;
@@ -8,6 +9,8 @@ if (typeof require === 'function') {
 		EventEmitter = EventEmitter2;
 	}
 }
+
+var exports = exports || {};
 
 
 //  ________
