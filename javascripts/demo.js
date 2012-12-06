@@ -70,14 +70,14 @@ function contentLoaded() {
 	sData.on('diff', function (JSONDiff) {
 		if (processing === 'sData') {
 			newLine(processing, JSON.stringify(JSONDiff));
-			cData.consume(JSONDiff);
+			cData.batch(JSONDiff);
 		}
 	});
 
 	cData.on('diff', function (JSONDiff) {
 		if (processing === 'cData') {
 			newLine(processing, JSON.stringify(JSONDiff));
-			sData.consume(JSONDiff);
+			sData.batch(JSONDiff);
 		}
 	});
 
