@@ -6,8 +6,8 @@ var oData = [ { name: "Mr. Pink", guns: 1 }, { name: "Mr. Blonde", guns: 0, kniv
 // database and then send it to the client ensuring that both server and client
 // have the same initial data.
 
-var sData = Tome.scribe(oData);
-var cData = Tome.scribe(oData);
+var sData = Tome.conjure(oData);
+var cData = Tome.conjure(oData);
 
 // We need a processing variable so that we know which context is performing
 // the operation.
