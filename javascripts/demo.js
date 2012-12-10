@@ -26,6 +26,8 @@ function newLine(source, text) {
 	dRepresentation.scrollTop = dRepresentation.scrollHeight;
 }
 
+// DOMify is not used at the moment.
+
 function DOMify(t, d) {
 	var sE, sL, sV, i, len, k, n;
 	switch (Tome.typeOf(t)) {
@@ -166,16 +168,16 @@ function contentLoaded() {
 
 	sData.on('signal', function (value) {
 		var sRepresentation = document.getElementById('sRepresentation');
-		DOMify(value, sRepresentation);
+		// DOMify(value, sRepresentation);
+		sRepresentation.textContent = 'var sData = ' + JSON.stringify(value);
 		sRepresentation.scrollTop = sRepresentation.scrollHeight;
-		//sRepresentation.textContent = 'var sData = ' + JSON.stringify(value);
 	});
 
 	cData.on('signal', function (value) {
 		var cRepresentation = document.getElementById('cRepresentation');
-		DOMify(value, cRepresentation);
+		// DOMify(value, cRepresentation);
+		cRepresentation.textContent = 'var cData = ' + JSON.stringify(value);
 		cRepresentation.scrollTop = cRepresentation.scrollHeight;
-		//cRepresentation.textContent = 'var cData = ' + JSON.stringify(value);
 	});
 }
 
