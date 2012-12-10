@@ -26,6 +26,85 @@ function newLine(source, text) {
 	dRepresentation.scrollTop = dRepresentation.scrollHeight;
 }
 
+function DOMify(t, d) {
+	var sE, sL, sV, i, len, k, n;
+	switch (Tome.typeOf(t)) {
+	case 'array':
+		if (d.tagName !== 'UL') {
+			n = document.createElement('UL');
+			n.id = d.id;
+			n.className = d.className;
+			d.parentNode.replaceChild(n, d);
+			d = n;
+		}
+		for (i = 0, len = t.length; i < len; i++) {
+			sE = document.getElementById(d.id + '-' + i);
+			if (!sE) {
+				sE = document.createElement('LI');
+				sE.id = d.id + '-' + i;
+			} else if (sE.tagName !== 'LI') {
+				n = document.createElement('LI');
+				n.id = d.id + '-' + i;
+				d.replaceChild(n, sE);
+				sE = n;
+			}
+			DOMify(t[i], sE);
+			d.appendChild(sE);
+		}
+		break;
+	case 'object':
+		for (k in t) {
+			if (t.hasOwnProperty(k)) {
+				sE = document.getElementById(d.id + '-' + k);
+				if (!sE) {
+					sE = document.createElement('DIV');
+					sE.id = d.id + '-' + k;
+					d.appendChild(sE);
+				} else if (sE.tagName !== 'DIV') {
+					n = document.createElement('DIV');
+					n.id = d.id + '-' + k;
+					d.replaceChild(n, sE);
+					sE = n;
+				}
+				sL = document.getElementById(d.id + '-' + k + '-label');
+				if (!sL) {
+					sL = document.createElement('SPAN');
+					sL.id = d.id + '-' + k + '-label';
+					sL.textContent = k + ': ';
+					sE.appendChild(sL);
+				} else if (sL.tagName !== 'SPAN') {
+					n = document.createElement('SPAN');
+					n.id = d.id + '-' + k + '-label';
+					n.textContent = k + ': ';
+					sE.replaceChild(n, sL);
+				} else {
+					sL.textContent = k + ': ';
+				}
+				sV = document.getElementById(d.id + '-' + k + '-value');
+				if (!sV) {
+					sV = document.createElement('SPAN');
+					sV.id = d.id + '-' + k + '-value';
+					DOMify(t[k], sV);
+					sE.appendChild(sV);
+				} else if (sV.tagName !== 'SPAN') {
+					n = document.createElement('SPAN');
+					n.id = d.id + '-' + k + '-value';
+					DOMify(t[k], n);
+					sE.replaceChild(n, sV);
+				} else {
+					DOMify(t[k], sV);
+				}
+			}
+		}
+		break;
+	case 'string':
+	case 'boolean':
+	case 'number':
+		d.textContent = t.valueOf();
+		break;
+	}
+}
+
 function contentLoaded() {
 
 	// Now that our content is loaded we can start modifying the DOM.
@@ -84,15 +163,19 @@ function contentLoaded() {
 	// Now we wire up the string representations of our data to update when
 	// changes are made.
 
-	var sRepresentation = document.getElementById('sRepresentation');
-	var cRepresentation = document.getElementById('cRepresentation');
 
 	sData.on('signal', function (value) {
-		sRepresentation.textContent = 'var sData = ' + JSON.stringify(value);
+		var sRepresentation = document.getElementById('sRepresentation');
+		DOMify(value, sRepresentation);
+		sRepresentation.scrollTop = sRepresentation.scrollHeight;
+		//sRepresentation.textContent = 'var sData = ' + JSON.stringify(value);
 	});
 
 	cData.on('signal', function (value) {
-		cRepresentation.textContent = 'var cData = ' + JSON.stringify(value);
+		var cRepresentation = document.getElementById('cRepresentation');
+		DOMify(value, cRepresentation);
+		cRepresentation.scrollTop = cRepresentation.scrollHeight;
+		//cRepresentation.textContent = 'var cData = ' + JSON.stringify(value);
 	});
 }
 
