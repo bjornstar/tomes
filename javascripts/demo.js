@@ -166,14 +166,14 @@ function contentLoaded() {
 	// changes are made.
 
 
-	sData.on('signal', function (value) {
+	sData.on('signal', function handleSSignal (value) {
 		var sRepresentation = document.getElementById('sRepresentation');
 		// DOMify(value, sRepresentation);
 		sRepresentation.textContent = 'var sData = ' + JSON.stringify(value);
 		sRepresentation.scrollTop = sRepresentation.scrollHeight;
 	});
 
-	cData.on('signal', function (value) {
+	cData.on('signal', function handleCSignal (value) {
 		var cRepresentation = document.getElementById('cRepresentation');
 		// DOMify(value, cRepresentation);
 		cRepresentation.textContent = 'var cData = ' + JSON.stringify(value);
