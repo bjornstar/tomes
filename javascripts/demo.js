@@ -151,14 +151,14 @@ function contentLoaded() {
 	sData.on('diff', function handleSDiff (JSONDiff) {
 		if (processing === 'sData') {
 			newLine(processing, JSON.stringify(JSONDiff));
-			cData.batch(JSONDiff);
+			cData.consume(JSONDiff);
 		}
 	});
 
 	cData.on('diff', function handleCDiff (JSONDiff) {
 		if (processing === 'cData') {
 			newLine(processing, JSON.stringify(JSONDiff));
-			sData.batch(JSONDiff);
+			sData.consume(JSONDiff);
 		}
 	});
 
@@ -185,3 +185,4 @@ function contentLoaded() {
 // the page is loaded and ready to be modified.
 
 document.addEventListener("DOMContentLoaded", contentLoaded);
+
