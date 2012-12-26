@@ -9,9 +9,6 @@ var oData = [ { name: "Mr. Pink", guns: 1 }, { name: "Mr. Blonde", guns: 0, kniv
 var sData = Tome.conjure(oData);
 var cData = Tome.conjure(oData);
 
-sData.pause();
-cData.pause();
-
 // We need a processing variable so that we know which context is performing
 // the operation.
 
@@ -134,6 +131,9 @@ function contentLoaded() {
 	});
 
 	window.setInterval(cRender, 1000);
+	
+	sRender();
+	cRender();
 }
 
 // And finally we add an event listener to trigger our DOM modifications once
