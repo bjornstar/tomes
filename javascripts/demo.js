@@ -9,6 +9,9 @@ var oData = [ { name: "Mr. Pink", guns: 1 }, { name: "Mr. Blonde", guns: 0, kniv
 var sData = Tome.conjure(oData);
 var cData = Tome.conjure(oData);
 
+sData.pause();
+cData.pause();
+
 // We need a processing variable so that we know which context is performing
 // the operation.
 
@@ -31,32 +34,31 @@ function newLine(source, text) {
 function sDataUpdate() {
 	var diff = cData.read();
 
+	sNeedsUpdate = false;
+
 	if (diff) {
 		newLine(processing, JSON.stringify(diff));
 		sData.merge(diff);
-		sData.read();
+		sData.read(); // clear the diffs from the merge
 	}
-
-	sNeedsUpdate = false;
 }
 
 function cDataUpdate() {
 	var diff = sData.read();
 
+	cNeedsUpdate = false;
+
 	if (diff) {
 		newLine(processing, JSON.stringify(diff));
 		cData.merge(diff);
-		cData.read();
+		cData.read(); // clear the diffs from the merge
 	}
-
-	cNeedsUpdate = false;
 }
 
 function sRender() {
 	var sRepresentation = document.getElementById('sRepresentation');
 	sRepresentation.textContent = 'var sData = ' + JSON.stringify(sData);
 	sRepresentation.scrollTop = sRepresentation.scrollHeight;
-
 	sNeedsRender = false;
 }
 
@@ -76,7 +78,7 @@ function contentLoaded() {
 	var sTextarea = document.getElementById('sTextarea');
 	var cTextarea = document.getElementById('cTextarea');
 
-	sTextarea.textContent = 'sData[0].guns.inc(Math.round(Math.random()*100));';
+	sTextarea.textContent = 'setInterval(function () { processing = \'sData\'; sData[0].guns.inc(Math.round(Math.random()*100)); }, 10);';
 	cTextarea.textContent = 'cData.push({ name: \'Mr. Blue\', guns: 1 });\ncData[0].name.assign(\'Steve Buscemi\');';
 
 	// Now wire up some click event handlers to handle executing our commands.
@@ -86,6 +88,7 @@ function contentLoaded() {
 		processing = 'sData';
 		try {
 			eval(sTextarea.value);
+			cDataUpdate(); // make sure this data gets consumed immediately.
 		} catch (error) {
 			newLine(processing, error);
 		}
@@ -98,6 +101,7 @@ function contentLoaded() {
 		processing = 'cData';
 		try {
 			eval(cTextarea.value);
+			sDataUpdate(); // make sure this data gets consumed immediately.
 		} catch (error) {
 			newLine(processing, error);
 		}
@@ -112,7 +116,7 @@ function contentLoaded() {
 		// haven't already scheduled one.
 		if (!sNeedsUpdate && processing === 'cData') {
 			sNeedsUpdate = true;
-			window.setTimeout(sDataUpdate, 100);
+			window.setTimeout(sDataUpdate, 200);
 		}
 
 		cNeedsRender = true;
@@ -126,14 +130,11 @@ function contentLoaded() {
 
 		if (!sNeedsRender) {
 			sNeedsRender = true;
-			window.setTimeout(sRender, 100);
+			window.setTimeout(sRender, 200);
 		}
 	});
 
 	window.setInterval(cRender, 1000);
-	
-	sRender();
-	cRender();
 }
 
 // And finally we add an event listener to trigger our DOM modifications once
