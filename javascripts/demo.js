@@ -53,17 +53,21 @@ function cDataUpdate() {
 }
 
 function sRender() {
-	var sRepresentation = document.getElementById('sRepresentation');
-	sRepresentation.textContent = 'var sData = ' + JSON.stringify(sData);
-	sRepresentation.scrollTop = sRepresentation.scrollHeight;
-	sNeedsRender = false;
+	if (sNeedsRender) {
+		var sRepresentation = document.getElementById('sRepresentation');
+		sRepresentation.textContent = 'var sData = ' + JSON.stringify(sData);
+		sRepresentation.scrollTop = sRepresentation.scrollHeight;
+		sNeedsRender = false;
+	}
 }
 
 function cRender() {
-	var cRepresentation = document.getElementById('cRepresentation');
-	cRepresentation.textContent = 'var cData = ' + JSON.stringify(cData);
-	cRepresentation.scrollTop = cRepresentation.scrollHeight;
-	cNeedsRender = false;
+	if (cNeedsRender) {
+		var cRepresentation = document.getElementById('cRepresentation');
+		cRepresentation.textContent = 'var cData = ' + JSON.stringify(cData);
+		cRepresentation.scrollTop = cRepresentation.scrollHeight;
+		cNeedsRender = false;
+	}
 }
 
 function contentLoaded() {
@@ -130,6 +134,11 @@ function contentLoaded() {
 			window.setTimeout(sRender, 200);
 		}
 	});
+
+	cNeedsRender = true;
+	sNeedsRender = true;
+	sRender();
+	cRender();
 
 	window.setInterval(cRender, 1000);
 }
