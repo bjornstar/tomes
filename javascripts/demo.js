@@ -14,7 +14,7 @@ var cData = Tome.conjure(oData);
 
 var processing;
 
-var sNeedsUpdate, cNeedsUpdate, sNeedsRender, cNeedsRender;
+var sNeedsRender, cNeedsRender;
 
 // newLine is a function that we use to display the diffs, appending each diff
 // with the context to the end of the log.
@@ -26,30 +26,6 @@ function newLine(source, text) {
 	dRepresentation.appendChild(output);
 	dRepresentation.appendChild(document.createElement('br'));
 	dRepresentation.scrollTop = dRepresentation.scrollHeight;
-}
-
-function sDataUpdate() {
-	var diff = cData.read();
-
-	sNeedsUpdate = false;
-
-	if (diff) {
-		newLine(processing, JSON.stringify(diff));
-		sData.merge(diff);
-		sData.read(); // clear the diffs from the merge
-	}
-}
-
-function cDataUpdate() {
-	var diff = sData.read();
-
-	cNeedsUpdate = false;
-
-	if (diff) {
-		newLine(processing, JSON.stringify(diff));
-		cData.merge(diff);
-		cData.read(); // clear the diffs from the merge
-	}
 }
 
 function sRender() {
@@ -70,6 +46,40 @@ function cRender() {
 	}
 }
 
+function sDataUpdate() {
+	// cData has changed, we need to schedule an update, but only if we
+	// haven't already scheduled one.
+	if (processing === 'cData') {
+		var diff = cData.read();
+
+		if (diff) {
+			newLine(processing, JSON.stringify(diff));
+			sData.merge(diff);
+			sData.read(); // clear the diffs from the merge
+		}
+	}
+
+	cNeedsRender = true;
+}
+
+function cDataUpdate() {
+	if (processing === 'sData') {
+		var diff = sData.read();
+
+		if (diff) {
+			newLine(processing, JSON.stringify(diff));
+			cData.merge(diff);
+			cData.read(); // clear the diffs from the merge
+		}
+
+	}
+
+	if (!sNeedsRender) {
+		sNeedsRender = true;
+		window.setTimeout(sRender, 200);
+	}
+}
+
 function contentLoaded() {
 
 	// Now that our content is loaded we can start modifying the DOM.
@@ -79,13 +89,13 @@ function contentLoaded() {
 	var sTextarea = document.getElementById('sTextarea');
 	var cTextarea = document.getElementById('cTextarea');
 
-	sTextarea.textContent = 'setInterval(function () { processing = \'sData\'; sData[0].guns.inc(Math.round(Math.random()*100)); }, 10);';
+	sTextarea.textContent = 'setInterval(function incGuns() { processing = \'sData\'; sData[0].guns.inc(Math.round(Math.random()*100)); }, 10);';
 	cTextarea.textContent = 'cData.push({ name: \'Mr. Blue\', guns: 1 });\ncData[0].name.assign(\'Steve Buscemi\');';
 
 	// Now wire up some click event handlers to handle executing our commands.
 
 	var s2c = document.getElementById('s2c');
-	s2c.addEventListener("click", function handleS2C (e) {
+	s2c.addEventListener("click", function handleS2C(e) {
 		processing = 'sData';
 		try {
 			eval(sTextarea.value);
@@ -98,7 +108,7 @@ function contentLoaded() {
 	}, false);
 
 	var c2s = document.getElementById('c2s');
-	c2s.addEventListener("click", function handleC2S (e) {
+	c2s.addEventListener("click", function handleC2S(e) {
 		processing = 'cData';
 		try {
 			eval(cTextarea.value);
@@ -112,28 +122,8 @@ function contentLoaded() {
 
 	// Now we wire up the data processors and render functions.
 
-	cData.on('readable', function cDataReadable () {
-		// cData has changed, we need to schedule an update, but only if we
-		// haven't already scheduled one.
-		if (!sNeedsUpdate && processing === 'cData') {
-			sNeedsUpdate = true;
-			window.setTimeout(sDataUpdate, 200);
-		}
-
-		cNeedsRender = true;
-	});
-
-	sData.on('readable', function sDataReadable() {
-		if (!cNeedsUpdate && processing === 'sData') {
-			cNeedsUpdate = true;
-			window.setTimeout(cDataUpdate, 300);
-		}
-
-		if (!sNeedsRender) {
-			sNeedsRender = true;
-			window.setTimeout(sRender, 200);
-		}
-	});
+	cData.on('readable', sDataUpdate);
+	sData.on('readable', cDataUpdate);
 
 	cNeedsRender = true;
 	sNeedsRender = true;
