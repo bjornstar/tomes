@@ -9,8 +9,8 @@ try {
 var tomeFile = fs.readFileSync('index.js');
 fs.writeFileSync('tmp/index.js', tomeFile);
 
-var TomeA = require('../..').Tome;
-var TomeB = require('../../tmp').Tome;
+var TomeA = require('../..');
+var TomeB = require('../../tmp');
 
 exports.crossTomeIsTome = function (test) {
 	test.expect(2);

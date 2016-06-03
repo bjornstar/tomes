@@ -1,13 +1,12 @@
-var tomes = require('../..');
+var Tome = require('../..');
 
-var Tome = tomes.Tome;
-var ArrayTome = tomes.ArrayTome;
-var BooleanTome = tomes.BooleanTome;
-var NumberTome = tomes.NumberTome;
-var ObjectTome = tomes.ObjectTome;
-var StringTome = tomes.StringTome;
-var NullTome = tomes.NullTome;
-var UndefinedTome = tomes.UndefinedTome;
+var ArrayTome = Tome.ArrayTome;
+var BooleanTome = Tome.BooleanTome;
+var NumberTome = Tome.NumberTome;
+var ObjectTome = Tome.ObjectTome;
+var StringTome = Tome.StringTome;
+var NullTome = Tome.NullTome;
+var UndefinedTome = Tome.UndefinedTome;
 
 var instanceOf = function (actual, expected) {
 	if (actual instanceof expected) {

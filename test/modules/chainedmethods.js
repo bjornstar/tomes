@@ -1,6 +1,4 @@
-var tomes = require('../..');
-
-var Tome = tomes.Tome;
+var Tome = require('../..');
 
 exports.testChainSet = function (test) {
 	test.expect(12);

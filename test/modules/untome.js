@@ -1,5 +1,5 @@
 var trueName = require('rumplestiltskin').trueName;
-var Tome = require('../..').Tome;
+var Tome = require('../..');
 
 exports.unTomeNumber = function (test) {
 	test.expect(1);

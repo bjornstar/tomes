@@ -1,13 +1,12 @@
-var tomes = require('../..');
+var Tome = require('../..');
 
-var Tome = tomes.Tome,
-	ArrayTome = tomes.ArrayTome,
-	BooleanTome = tomes.BooleanTome,
-	NumberTome = tomes.NumberTome,
-	ObjectTome = tomes.ObjectTome,
-	StringTome = tomes.StringTome,
-	NullTome = tomes.NullTome,
-	UndefinedTome = tomes.UndefinedTome;
+var ArrayTome = Tome.ArrayTome;
+var BooleanTome = Tome.BooleanTome;
+var NumberTome = Tome.NumberTome;
+var ObjectTome = Tome.ObjectTome;
+var StringTome = Tome.StringTome;
+var NullTome = Tome.NullTome;
+var UndefinedTome = Tome.UndefinedTome;
 
 var instanceOf = function (actual, expected) {
 	if (actual instanceof expected) {
@@ -35,7 +34,7 @@ exports.testObjectCreation = function (test) {
 	test.ok(notInstanceOf(b, StringTome)); // 8
 	test.ok(notInstanceOf(b, NullTome)); // 9
 	test.ok(notInstanceOf(b, UndefinedTome)); // 10
-	
+
 	test.done();
 };
 

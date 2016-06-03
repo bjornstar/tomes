@@ -1,4 +1,4 @@
-var Tome = require('../..').Tome;
+var Tome = require('../..');
 
 exports.testRename = function (test) {
 	test.expect(2);

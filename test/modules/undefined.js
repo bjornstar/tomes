@@ -1,8 +1,7 @@
-var tomes = require('../..');
+var Tome = require('../..');
 
-var Tome = tomes.Tome,
-	ObjectTome = tomes.ObjectTome,
-	UndefinedTome = tomes.UndefinedTome;
+var ObjectTome = Tome.ObjectTome;
+var UndefinedTome = Tome.UndefinedTome;
 
 var instanceOf = function (actual, expected) {
 	if (actual instanceof expected) {
@@ -18,9 +17,9 @@ var notInstanceOf = function (actual, expected) {
 
 exports.testUndefinedCreation = function (test) {
 	test.expect(1);
-	
+
 	test.throws(function () { Tome.conjure(); }, TypeError);
-	
+
 	test.done();
 };
 

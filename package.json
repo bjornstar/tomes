@@ -1,10 +1,10 @@
 {
-    "name": "tomes",
+    "name": "@bjornstar/tomes",
     "description": "Evented Storage Agnostic Data API",
-    "version": "0.1.0",
-    "author": "Wizcorp, Inc. <info@wizcorp.jp>",
+    "version": "1.0.0-beta.1",
+    "author": "Bjorn Stromberg <bjornstar@gmail.com>",
     "maintainers": [
-        { "name": "Bjorn Stromberg", "email": "bstromberg@wizcorp.jp" }
+        { "name": "Bjorn Stromberg", "email": "bjornstar@gmail.com" }
     ],
     "scripts": {
         "test": "node test"
@@ -15,15 +15,12 @@
         "nodeunit": "*",
         "rumplestiltskin": "*"
     },
-    "license": {
-        "type": "MIT",
-        "url": "https://github.com/Wizcorp/node-tomes/raw/master/LICENSE"
-    },
+    "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Wizcorp/node-tomes.git"
+        "url": "https://github.com/bjornstar/tomes.git"
     },
     "bugs" : {
-        "url" : "http://github.com/Wizcorp/node-tomes/issues"
+        "url" : "http://github.com/bjornstar/tomes/issues"
     }
 }

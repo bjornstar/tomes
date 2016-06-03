@@ -19,27 +19,13 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-var EventEmitter;
-
-try {
-	EventEmitter = require('emitter');
-} catch (e) {
-	EventEmitter = require('events').EventEmitter;
-}
-
-if (!EventEmitter) {
-	throw new Error('Could not find EventEmitter, Tomes cannot start.');
-}
+var EventEmitter = require('events').EventEmitter;
 
 function inherits(Child, Parent) {
 	Child.prototype = Object.create(Parent.prototype, {
 		constructor: { value: Child, enumerable: false, writable: true, configurable: true }
 	});
 }
-
-var exports = exports || {};
-var isArray = Array.isArray;
-
 
 //  ________
 // |        \
@@ -84,6 +70,7 @@ function Tome(parent, key) {
 		__dirty__: { writable: true, value: 1 },
 		__root__: { writable: true, value: hasParentTome ? parent.__root__ : this },
 		_events: { configurable: true, writable: true },
+		_eventsCount: { configurable: true, writable: true },
 		_callbacks: { configurable: true, writable: true }
 	};
 
@@ -470,7 +457,17 @@ var tomeMap = {
 	"undefined": UndefinedTome
 };
 
+var types = Object.keys(tomeMap);
+
 inherits(Tome, EventEmitter);
+
+types.forEach(function (type) {
+	var typedTome = tomeMap[type];
+
+	inherits(typedTome, Tome);
+	Tome[typedTome.name] = typedTome;
+});
+
 
 // Every Tome is an EventEmitter, we can listen for four different events:
 //
@@ -495,7 +492,7 @@ inherits(Tome, EventEmitter);
 //  - readable: Emitted when a Tome or any of its child Tomes are altered.
 //
 
-exports.Tome = Tome;
+module.exports = exports = Tome;
 
 Tome.isTome = function (o) {
 	// If it's literally undefined or null, it's not a Tome.
@@ -525,6 +522,7 @@ Tome.isTome = function (o) {
 	return name === 'Tome';
 };
 
+var isArray = Array.isArray;
 
 Tome.typeOf = function (v) {
 
@@ -1070,10 +1068,6 @@ Tome.prototype.swap = function (key, target) {
 //                                          \$$$$$$
 
 
-inherits(ArrayTome, Tome);
-
-exports.ArrayTome = ArrayTome;
-
 ArrayTome.isArrayTome = function (o) {
 	return Tome.isTome(o) && Tome.typeOf(o) === 'array';
 };
@@ -1564,10 +1558,6 @@ ArrayTome.prototype.concat = function () {
 //  \$$$$$$$   \$$$$$$   \$$$$$$  \$$  \$$$$$$$  \$$$$$$$ \$$   \$$
 
 
-inherits(BooleanTome, Tome);
-
-exports.BooleanTome = BooleanTome;
-
 BooleanTome.isBooleanTome = function (o) {
 	return Tome.isTome(o) && Tome.typeOf(o) === 'boolean';
 };
@@ -1599,10 +1589,6 @@ BooleanTome.prototype.toJSON = function () {
 // | $$  \$$$ \$$    $$| $$| $$
 //  \$$   \$$  \$$$$$$  \$$ \$$
 
-
-exports.NullTome = NullTome;
-
-inherits(NullTome, Tome);
 
 NullTome.isNullTome = function (o) {
 	return Tome.isTome(o) && Tome.typeOf(o) === 'null';
@@ -1636,10 +1622,6 @@ NullTome.prototype.typeOf = function () {
 // | $$  \$$$ \$$    $$| $$ | $$ | $$| $$    $$ \$$     \| $$
 //  \$$   \$$  \$$$$$$  \$$  \$$  \$$ \$$$$$$$   \$$$$$$$ \$$
 
-
-exports.NumberTome = NumberTome;
-
-inherits(NumberTome, Tome);
 
 NumberTome.isNumberTome = function (o) {
 	return Tome.isTome(o) && Tome.typeOf(o) === 'number';
@@ -1704,10 +1686,6 @@ NumberTome.prototype.toLocaleString = function () {
 //                    \$$    $$
 //                     \$$$$$$
 
-
-inherits(ObjectTome, Tome);
-
-exports.ObjectTome = ObjectTome;
 
 ObjectTome.isObjectTome = function (o) {
 	return Tome.isTome(o) && Tome.typeOf(o) === 'object';
@@ -1780,10 +1758,6 @@ ObjectTome.prototype.rename = function () {
 //                                               \$$$$$$
 
 
-exports.StringTome = StringTome;
-
-inherits(StringTome, Tome);
-
 StringTome.isStringTome = function (o) {
 	return Tome.isTome(o) && Tome.typeOf(o) === 'string';
 };
@@ -1815,10 +1789,6 @@ StringTome.prototype.toJSON = function () {
 //  \$$    $$| $$  | $$ \$$    $$ \$$     \| $$      | $$| $$  | $$ \$$     \ \$$    $$
 //   \$$$$$$  \$$   \$$  \$$$$$$$  \$$$$$$$ \$$       \$$ \$$   \$$  \$$$$$$$  \$$$$$$$
 
-
-exports.UndefinedTome = UndefinedTome;
-
-inherits(UndefinedTome, Tome);
 
 UndefinedTome.isUndefinedTome = function (o) {
 	return Tome.isTome(o) && Tome.typeOf(o) === 'undefined';

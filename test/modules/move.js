@@ -1,4 +1,4 @@
-var Tome = require('../..').Tome;
+var Tome = require('../..');
 
 exports.testMove = function (test) {
 	test.expect(1);
@@ -251,7 +251,7 @@ exports.testDiffMoveBackAndForth = function (test) {
 		var diff = b.read();
 		c.merge(diff);
 	});
-	
+
 	a.b = a.a;
 	delete a.a;
 	b.move('a', 'b');
@@ -609,7 +609,7 @@ exports.testDiffReverseMove = function (test) {
 
 	test.deepEqual(JSON.parse(JSON.stringify(a)), JSON.parse(JSON.stringify(b))); // 1
 	test.deepEqual(JSON.parse(JSON.stringify(b)), JSON.parse(JSON.stringify(c))); // 2
-	
+
 	test.done();
 };
 
@@ -634,7 +634,7 @@ exports.testDiffMoveReverse = function (test) {
 
 	test.deepEqual(JSON.parse(JSON.stringify(a)), JSON.parse(JSON.stringify(b))); // 1
 	test.deepEqual(JSON.parse(JSON.stringify(b)), JSON.parse(JSON.stringify(c))); // 2
-	
+
 	test.done();
 };
 
