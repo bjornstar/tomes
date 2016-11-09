@@ -1,5 +1,8 @@
 #Tomes Release Notes
 
+##1.0.0-beta.3
+ * Update `README.md` to point to this fork.
+
 ##1.0.0-beta.2
  * Tomes now have an unTome method
  * Fix a few lint errors in tests

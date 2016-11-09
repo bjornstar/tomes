@@ -1,6 +1,6 @@
-[![NPM](https://nodei.co/npm/tomes.png?downloads=true)](https://nodei.co/npm/tomes/)
+[![NPM](https://nodei.co/npm/@bjornstar/tomes.png?downloads=true)](https://nodei.co/npm/tomes/)
 
-[![Build Status](https://travis-ci.org/Wizcorp/node-tomes.png)](https://travis-ci.org/Wizcorp/node-tomes)
+[![Build Status](https://travis-ci.org/bjornstar/tomes.png)](https://travis-ci.org/bjornstar/tomes)
 
 Tomes
 =====
@@ -101,6 +101,9 @@ Get all change operations from the Tome
 
 ###merge( *diff* )
 Applies a change operation or an array of change operations to a Tome.
+
+###unTome( )
+Returns a regular javascript version of your Tome.
 
 ###getKey( )
 Returns a Tome's key.
