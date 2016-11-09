@@ -69,10 +69,13 @@ exports.unTomeComplex = function (test) {
 
 exports.unTomeRepeated = function (test) {
 	test.expect(1);
+
 	var a = [ undefined, undefined, undefined, undefined ];
+
 	test.doesNotThrow(function () {
-		var b = Tome.unTome(a);
+		Tome.unTome(a);
 	});
+
 	test.done();
 };
 
@@ -86,8 +89,19 @@ exports.unTomeCircularReference = function (test) {
 	var circRefs = new CircularReference();
 
 	test.throws(function () {
-		var b = Tome.unTome(circRefs);
+		Tome.unTome(circRefs);
 	}, TypeError, 'expected a TypeError');
+
+	test.done();
+};
+
+exports.unTomeSelf = function (test) {
+	test.expect(1);
+
+	var a = { a: '1', b: false, c: null, d: 1234.5667 };
+	var b = Tome.conjure(a);
+
+	test.strictEqual(trueName(a), trueName(b.unTome()));
 
 	test.done();
 };

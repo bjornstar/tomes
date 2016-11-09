@@ -1,5 +1,16 @@
 #Tomes Release Notes
 
+##1.0.0-beta.2
+ * Tomes now have an unTome method
+ * Fix a few lint errors in tests
+
+##1.0.0-beta.1
+ * Remove component.json
+ * Always use node events library
+ * Now available as @bjornstar/tomes
+ * Export Tome directly
+ * Put types on Tome itself
+
 ##0.1.0
  * Removed the hide method, it was useless and only increased code complexity.
  * Added nodei.co badge.

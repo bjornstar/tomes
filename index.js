@@ -626,6 +626,10 @@ Tome.prototype.getParent = function () {
 	return this.__parent__;
 };
 
+Tome.prototype.unTome = function () {
+	return Tome.unTome(this);
+};
+
 Tome.prototype.set = function (key, val) {
 
 	// We use this to set a property on a Tome to the specified value. This can
@@ -1337,7 +1341,7 @@ ArrayTome.prototype.rename = function () {
 	for (oldKey in rO) {
 		newKey = rO[oldKey];
 		if (!this.hasOwnProperty(oldKey)) {
-			throw new ReferenceError('ObjectTome.rename - Key is not defined: ' + oldKey);
+			throw new ReferenceError('ArrayTome.rename - Key is not defined: ' + oldKey);
 		}
 
 		this._arr[oldKey].__key__ = newKey;
