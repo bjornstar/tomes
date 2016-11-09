@@ -1,4 +1,4 @@
-[![NPM](https://nodei.co/npm/@bjornstar/tomes.png?downloads=true)](https://nodei.co/npm/tomes/)
+[![NPM](https://nodei.co/npm/@bjornstar/tomes.png?downloads=true)](https://nodei.co/npm/@bjornstar/tomes)
 
 [![Build Status](https://travis-ci.org/bjornstar/tomes.png)](https://travis-ci.org/bjornstar/tomes)
 

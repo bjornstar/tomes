@@ -1,5 +1,8 @@
 #Tomes Release Notes
 
+##1.0.0-beta.4
+ * Update `README.md` to fix first link
+
 ##1.0.0-beta.3
  * Update `README.md` to point to this fork.
 
