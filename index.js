@@ -630,6 +630,10 @@ Tome.prototype.unTome = function () {
 	return Tome.unTome(this);
 };
 
+Tome.prototype.destroy = function () {
+	return Tome.destroy(this);
+};
+
 Tome.prototype.set = function (key, val) {
 
 	// We use this to set a property on a Tome to the specified value. This can
