@@ -102,6 +102,9 @@ Get all change operations from the Tome
 ###merge( *diff* )
 Applies a change operation or an array of change operations to a Tome.
 
+###destroy( )
+Makes the tome and all of it's sub-tomes emit destroy. Does not delete anything.
+
 ###unTome( )
 Returns a regular javascript version of your Tome.
 

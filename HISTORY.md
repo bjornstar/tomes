@@ -1,10 +1,14 @@
 #Tomes Release Notes
 
+##1.0.0-beta.5
+ * Tomes now have a destroy method
+ * Add .jshintrc and run on tests
+
 ##1.0.0-beta.4
  * Update `README.md` to fix first link
 
 ##1.0.0-beta.3
- * Update `README.md` to point to this fork.
+ * Update `README.md` to point to this fork
 
 ##1.0.0-beta.2
  * Tomes now have an unTome method
