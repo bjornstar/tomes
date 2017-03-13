@@ -105,3 +105,21 @@ exports.unTomeSelf = function (test) {
 
 	test.done();
 };
+
+exports.unTomeSelfCache = function (test) {
+	test.expect(3);
+
+	var a = { a: '1', b: false, c: null, d: 1234.5667 };
+	var b = Tome.conjure(a);
+
+	var c = b.unTome();
+	var d = b.unTome();
+	test.strictEqual(c, d);
+	test.notEqual(a, c);
+
+	b.set('e', []);
+	var e = b.unTome();
+	test.notEqual(d, e);
+
+	test.done();
+};
