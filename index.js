@@ -69,6 +69,7 @@ function Tome(parent, key) {
 	var properties = {
 		__dirty__: { writable: true, value: 1 },
 		__root__: { writable: true, value: hasParentTome ? parent.__root__ : this },
+		__untomed__: { writable: true, value: { version: 0, cached: undefined } },
 		_events: { configurable: true, writable: true },
 		_eventsCount: { configurable: true, writable: true },
 		_callbacks: { configurable: true, writable: true }
@@ -627,7 +628,16 @@ Tome.prototype.getParent = function () {
 };
 
 Tome.prototype.unTome = function () {
-	return Tome.unTome(this);
+	if (this.__dirty__ === this.__untomed__.version) {
+		return this.__untomed__.cached;
+	}
+
+	var cached = Tome.unTome(this);
+
+	this.__untomed__.version = this.__dirty__;
+	this.__untomed__.cached = cached;
+
+	return cached;
 };
 
 Tome.prototype.destroy = function () {
