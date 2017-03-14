@@ -1,5 +1,8 @@
 #Tomes Release Notes
 
+##1.0.0
+ * Repeated calls to unTome return the same object
+
 ##1.0.0-beta.5
  * Tomes now have a destroy method
  * Add .jshintrc and run on tests
