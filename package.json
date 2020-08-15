@@ -2,12 +2,16 @@
     "name": "@bjornstar/tomes",
     "description": "Evented Storage Agnostic Data API",
     "version": "1.0.0",
-    "author": "Bjorn Stromberg <bjornstar@gmail.com>",
+    "author": "Bjorn Stromberg <bjorn@bjornstar.com>",
     "maintainers": [
-        { "name": "Bjorn Stromberg", "email": "bjornstar@gmail.com" }
+        {
+            "name": "Bjorn Stromberg",
+            "email": "bjorn@bjornstar.com"
+        }
     ],
     "scripts": {
-        "test": "jshint index.js && node test"
+        "lint": "jshint index.js",
+        "test": "node test"
     },
     "main": "index.js",
     "devDependencies": {
@@ -20,7 +24,7 @@
         "type": "git",
         "url": "https://github.com/bjornstar/tomes.git"
     },
-    "bugs" : {
-        "url" : "http://github.com/bjornstar/tomes/issues"
+    "bugs": {
+        "url": "http://github.com/bjornstar/tomes/issues"
     }
 }

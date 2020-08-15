@@ -39,12 +39,12 @@ reservoirDogs.cast[1].ears.pop();
 Tomes API
 =========
 
-##Tome
+## Tome
 
-###Tome.conjure( *data* )
+### Tome.conjure( *data* )
 Returns a new Tome containing your data.
 
-###Tome.typeOf( *data* )
+### Tome.typeOf( *data* )
 Returns data's type as a string. Tomes has types that exist in JSON which are:
  - array
  - boolean
@@ -55,13 +55,13 @@ Returns data's type as a string. Tomes has types that exist in JSON which are:
 As well as:
  - undefined
 
-###Tome.isTome( *data* )
+### Tome.isTome( *data* )
 Returns a boolean indicating whether data is a Tome or not.
 
-###Tome.unTome( *tome* )
+### Tome.unTome( *tome* )
 Returns a regular JavaScript version of your Tome.
 
-##TomeTypes
+## TomeTypes
  - ArrayTome
  - BooleanTome
  - NullTome
@@ -70,72 +70,72 @@ Returns a regular JavaScript version of your Tome.
  - StringTome
  - UndefinedTome
 
-###Tome.destroy( *tome* )
+### Tome.destroy( *tome* )
 Make a tome and all of it's sub-tomes emit destroy. This will not delete anything.
 
-##Methods
+## Methods
 
-###assign( *data* )
+### assign( *data* )
 Assign data to a Tome.
 
-###set( *key*, *data* )
+### set( *key*, *data* )
 Assign data to key on a Tome. Set will create a Tome on the key if it does not exist.
 
-###del( *key* )
+### del( *key* )
 Delete a key from a Tome.
 
-###swap( *key*, *tome* )
+### swap( *key*, *tome* )
 Swap key with tome.
 
-###rename( *key*, *newkey* )
+### rename( *key*, *newkey* )
 Rename key to newkey.
 
-###move( *key*, *tome*, [ *newkey* ] )
+### move( *key*, *tome*, [ *newkey* ] )
 Move key to tome. Optionally call it newkey on that tome.
 
-###read( )
+### read( )
 Get a single change operation from the root Tome, removing it in the process. Returns null if there are no changes.
 
-###readAll( )
+### readAll( )
 Get all change operations from the Tome
 
-###merge( *diff* )
+### merge( *diff* )
 Applies a change operation or an array of change operations to a Tome.
 
-###destroy( )
+### destroy( )
 Makes the tome and all of it's sub-tomes emit destroy. Does not delete anything.
 
-###unTome( )
+### unTome( )
 Returns a regular javascript version of your Tome.
 
-###getKey( )
+### getKey( )
 Returns a Tome's key.
 
-###getParent( )
+### getParent( )
 Returns a Tome's parent Tome.
 
-###getVersion( )
+### getVersion( )
 Returns a Tome's version.
 
-###is( *value* )
+### is( *value* )
 Returns a boolean value indicating whether or not the Tome is observably indistinguishable from value ([ref](http://wiki.ecmascript.org/doku.php?id=harmony:egal)). If no value is given, returns whether or not the Tome's value is truthy.
 
-###isDirty( )
+### isDirty( )
 Returns whether a Tome has been changed, but the change has not been read.
 
-##Events
+## Events
 
-###add( *key* )
+### add( *key* )
 Emitted when a Tome receives a new key.
 
-###del( *key* )
+### del( *key* )
 Emitted when a key is deleted from a Tome.
 
-###destroy( )
+### destroy( )
 Emitted when a Tome is deleted. Removes all event listeners for this Tome.
 
-###readable( *was* )
+### readable( *was* )
 Emitted every time a Tome or any of its child Tomes are altered. If the Tome was a primitive (ie. string, number, or boolean) the previous value will be emitted as well, but only if it did not change types.
 
-###typeChange( *tome*, *oldType*, *newType* )
+### typeChange( *tome*, *oldType*, *newType* )
 Emitted by the root tome when a Tome changes type.

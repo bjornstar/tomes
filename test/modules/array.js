@@ -451,8 +451,8 @@ exports.testArraySort = function (test) {
 		test.strictEqual(JSON.stringify(a), JSON.stringify(b));
 	});
 
-	a.sort(function (a, b) { return a.valueOf() - b.valueOf(); });
-	b.sort(function (a, b) { return a.valueOf() - b.valueOf(); });
+	a.sort();
+	b.sort();
 
 	// 2
 	test.strictEqual(a.length, b.length);
@@ -462,8 +462,8 @@ exports.testArraySort = function (test) {
 	a.push('asdf', 'foo', 'bar', 'zebra', 'banana', 'kangaroo');
 	b.push('asdf', 'foo', 'bar', 'zebra', 'banana', 'kangaroo');
 
-	a.sort(function (a, b) { return a.valueOf() - b.valueOf(); });
-	b.sort(function (a, b) { return a.valueOf() - b.valueOf(); });
+	a.sort();
+	b.sort();
 
 	// 6
 	test.strictEqual(JSON.stringify(a), JSON.stringify(b));
