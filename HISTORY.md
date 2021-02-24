@@ -1,5 +1,10 @@
 # @bjornstar/tomes Release Notes
 
+## v1.1.2 / 2021-02-24
+* [README.md](./README.md): Replace wiki.ecmascript.org with tc39wiki.calculist.org
+* [README.md](./README.md): Redirects from *.github.com are going away, change to github.io
+* [package.json](./package.json): Use https for bugs url
+
 ## v1.1.1 / 2020-08-15
 * [HISTORY.md](./HISTORY.md): Add dates next to version numbers
 * [HISTORY.md](./HISTORY.md): Prefix versions with v

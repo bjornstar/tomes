@@ -1,7 +1,7 @@
 {
     "name": "@bjornstar/tomes",
     "description": "Evented Storage Agnostic Data API",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "author": "Bjorn Stromberg <bjorn@bjornstar.com>",
     "maintainers": [
         {
@@ -25,6 +25,6 @@
         "url": "https://github.com/bjornstar/tomes.git"
     },
     "bugs": {
-        "url": "http://github.com/bjornstar/tomes/issues"
+        "url": "https://github.com/bjornstar/tomes/issues"
     }
 }

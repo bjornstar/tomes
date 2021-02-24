@@ -13,7 +13,7 @@ Problem: You've got data and you want to do something whenever it changes.
 
 Access and modify your data through the Tomes API and you'll get change events.
 
-Play with a live demo here - http://bjornstar.github.com/tomes/
+Play with a live demo here - https://bjornstar.github.io/tomes/
 
 Example
 =======
@@ -118,7 +118,7 @@ Returns a Tome's parent Tome.
 Returns a Tome's version.
 
 ### is( *value* )
-Returns a boolean value indicating whether or not the Tome is observably indistinguishable from value ([ref](http://wiki.ecmascript.org/doku.php?id=harmony:egal)). If no value is given, returns whether or not the Tome's value is truthy.
+Returns a boolean value indicating whether or not the Tome is observably indistinguishable from value ([ref](https://tc39wiki.calculist.org/es6/egal/)). If no value is given, returns whether or not the Tome's value is truthy.
 
 ### isDirty( )
 Returns whether a Tome has been changed, but the change has not been read.
